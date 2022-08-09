@@ -1,11 +1,14 @@
-const express = require('express');
+const express = require("express");
 const app = express();
-const axios = require('axios');
-const port = 8000
-const got = require('/got.json')
+const port = 8000;
+const gameOfThrones = require("./routes/gameOfThrones");
+const pokemon = require("./routes/pokemon");
 
+app.get("/", (req, res) => {
+  res.send("Game of Thrones & Pokemon");
+});
 
+app.use("/game-of-thrones", gameOfThrones);
+app.use("/pokemon", pokemon);
 
-app.get('/game-of-thrones/json', (req, res) => {
-    res.json(got)
-})
+app.listen(port, () => console.log(`listening on port ${port}`));
