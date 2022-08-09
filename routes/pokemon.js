@@ -10,6 +10,9 @@ app.get("/all", async (req, res) => {
 });
 
 app.get("/:id", async (req, res) => {
+  if (req.params.id > 905) {
+    res.status(404).send("Not Found");
+  }
   const result = await axios.get(
     `https://pokeapi.co/api/v2/pokemon/${req.params.id}`
   );
